@@ -1,7 +1,14 @@
-from flask import Flask, render_template, url_for
+from flask import Flask, render_template
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+
+list = [
+    'инженер-строитель', 'пилот', 'строитель', 'экзобиолог', 'врач',
+    'инженер по терраформированию', 'климатолог', 'специалист по радиационной защите',
+    'астрогеолог', 'гляциолог', 'инженер жизнеобеспечения', 'метеоролог',
+    'оператор марсохода', 'киберинженер', 'штурман', 'пилот дронов'
+]
 
 
 @app.route('/')
@@ -13,6 +20,11 @@ def index(title="Миссия на Марс"):
 @app.route('/training/<prof>')
 def training(prof):
     return render_template('prof.html', prof=prof)
+
+
+@app.route('/list_prof/<prm>')
+def spis_prof(prm):
+    return render_template('prof_list.html', list=list, prm=prm)
 
 
 if __name__ == '__main__':
